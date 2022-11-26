@@ -1,20 +1,9 @@
 import { Router } from "express";
 
+import { userController } from "../controllers/index.js";
+
 const authRouter = Router();
 
-export const usuarios = [];
-
-authRouter.post("/sign-up", (req, res) => {
-  const { username, avatar } = req.body;
-
-  if (!username || !avatar) {
-    res.status(400).send("Todos os campos são obrigatórios!");
-    return;
-  }
-
-  usuarios.push({ username, avatar });
-
-  res.status(200).send("OK deu tudo certo");
-});
+authRouter.post("/sign-up", userController.signup);
 
 export default authRouter;
